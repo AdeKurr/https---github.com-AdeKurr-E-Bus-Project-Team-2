@@ -12,6 +12,7 @@ import com.project.ebus.repository.perusahaanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
 @Controller
 public class BusController {
     @Autowired
@@ -40,7 +41,7 @@ public class BusController {
     }
 
     @GetMapping("/perusahaan") // ade
-    public String getPageperusahaan(Model model) {
+        public String getPageperusahaan(Model model) {
         List<Perusahaan> perusahaan = perusahaanRepo.findAll();
         model.addAttribute("dataperusahaan", perusahaan);
         return "perusahaan";

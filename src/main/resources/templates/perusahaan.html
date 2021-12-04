@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="en">
+
+<head>
+  <title>Rekan Bisnis</title>
+  <div th:insert="fragments/linkcssfragment :: linkcss"></div>
+</head>
+
+<body>
+  <div class="page">
+    <div th:insert="fragments/header :: header"></div>
+    <br>
+    <p style="font-size: 50px;">Perusahaan yang telah Bergabung bersama Kami:</p>
+    <br><br>
+    <!-- Section Box Categories-->
+    <div th:each="perusahaan : ${dataperusahaan}">
+      <section class="section section-lg section-top-1 bg-gray-4">
+        <div class="container offset-negative-1">
+          <div class="box-categories cta-box-wrap">
+            <div class="box-categories-content">
+              <div class="row justify-content-center">
+                <div class="col-md-4 wow fadeInDown col-9" data-wow-delay=".2s">
+                  <ul class="list-marked-2 box-categories-list">
+                    <li><a href="/booking"><img th:src="'images/bus/'+${perusahaan.id}+'.jpg'" alt="" /></a>
+                      <h5 class="box-categories-title" th:text="*{perusahaan.nama}"></h5>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Owl Carousel-->
+    </div>
+    </section>
+
+    <!-- Global Mailform Output-->
+    <div class="snackbars" id="form-output-global"></div>
+    <!-- Javascript-->
+    <script src="js/core.min.js"></script>
+    <script src="js/script.js"></script>
+    <div th:insert="fragments/footer :: footer"></div>
+
+</body>
+
+</html>
