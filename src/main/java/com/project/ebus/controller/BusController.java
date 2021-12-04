@@ -21,7 +21,9 @@ public class BusController {
     perusahaanRepository perusahaanRepo;
 
     @GetMapping("/index")
-    public String getPageIndex() {
+    public String getPageIndex(Model model) {
+        List<Developers> dev = devRepo.findAll();
+        model.addAttribute("dataDev", dev);
         return "index";
     }
 
