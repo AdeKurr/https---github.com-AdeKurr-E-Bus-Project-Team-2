@@ -5,8 +5,11 @@ import org.springframework.stereotype.Controller;
 import java.util.List;
 
 import com.project.ebus.model.Developers;
+import com.project.ebus.model.Jurusan;
 import com.project.ebus.model.Perusahaan;
+
 import com.project.ebus.repository.developerRepository;
+import com.project.ebus.repository.jurusanRepository;
 import com.project.ebus.repository.perusahaanRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,9 @@ public class BusController {
     @Autowired
     perusahaanRepository perusahaanRepo;
 
+    @Autowired
+    jurusanRepository jurusanRepo;
+
     @GetMapping("/index") // ade
     public String getPageIndex(Model model) {
         List<Developers> dev = devRepo.findAll();
@@ -33,10 +39,10 @@ public class BusController {
         return "login";
     }
 
-    @GetMapping("/about") // brata
+    @GetMapping("/about") // brata // ganti isi controller sekarang berupa ngambil data jurusan
     public String getPageAbout(Model model) {
-        List<Developers> dev = devRepo.findAll();
-        model.addAttribute("dataDev", dev);
+        List<Jurusan> jurusandata = jurusanRepo.findAll();
+        model.addAttribute("dataJurusan", jurusandata);
         return "about";
     }
 
