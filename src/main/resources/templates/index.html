@@ -35,51 +35,8 @@
 </head>
 
 <body>
-  <div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img
-        src="images/ie8-panel/warning_bar_0000_us.jpg" height="42" width="820"
-        alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a>
-  </div>
-  <div class="preloader">
-    <div class="preloader-body">
-      <div class="cssload-container">
-        <div class="cssload-speeding-wheel"></div>
-      </div>
-      <p>Mohon Tunggu sebentar ...</p>
-    </div>
-  </div>
   <div class="page">
-    <header class="section page-header">
-      <!-- RD Navbar-->
-      <div class="rd-navbar-wrap">
-        <nav class="rd-navbar rd-navbar-corporate" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed"
-          data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static"
-          data-lg-device-layout="rd-navbar-fixed" data-xl-layout="rd-navbar-static"
-          data-xl-device-layout="rd-navbar-static" data-xxl-layout="rd-navbar-static"
-          data-xxl-device-layout="rd-navbar-static" data-lg-stick-up-offset="46px" data-xl-stick-up-offset="46px"
-          data-xxl-stick-up-offset="106px" data-lg-stick-up="true" data-xl-stick-up="true" data-xxl-stick-up="true">
-          <div class="rd-navbar-collapse-toggle rd-navbar-fixed-element-1" data-rd-navbar-toggle=".rd-navbar-collapse">
-            <span></span>
-          </div>
-          <div class="rd-navbar-main-outer">
-            <div class="rd-navbar-main">
-              <div class="rd-navbar-nav-wrap">  
-                <!-- RD Navbar Nav-->
-                <ul class="rd-navbar-nav">
-                  <li class="rd-nav-item active"><a class="rd-nav-link" href="/index">Halaman Utama</a>
-                  </li>
-                  <li class="rd-nav-item"><a class="rd-nav-link" href="/about">Tentang</a>
-                  </li>
-                  <li class="rd-nav-item"><a class="rd-nav-link" href="typography.html">Typography</a>
-                  </li>
-                  <li class="rd-nav-item"><a class="rd-nav-link" href="contact-us.html">Hubungi Kami</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </nav>
-      </div>
-    </header>
+    <div th:insert="fragments/header :: header"></div>
     <!-- Swiper-->
     <section class="section swiper-container swiper-slider swiper-slider-corporate swiper-pagination-style-2"
       data-loop="true" data-autoplay="5000" data-simulate-touch="true" data-nav="false" data-direction="vertical">
@@ -267,28 +224,14 @@
   </div>
   </section>
 
-  <footer class="section footer-corporate context-dark">
-    <div class="footer-corporate-bottom-panel">
-      <div class="container">
-        <div class="row justfy-content-xl-space-berween row-10 align-items-md-center2">
-          <div class="col-sm-6 col-md-4 text-sm-right text-md-center">
-          </div>
-          <div class="col-sm-6 col-md-4 order-sm-first">
-            <!-- Rights-->
-            <p class="rights"><span>&copy;&nbsp;</span><span
-                class="copyright-year"></span><span>&nbsp;</span><span>Juara Coding Batch 10, PT. DIKA</span><br> All Rights Reserved <br>Design
-              by Team 2</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
+
   </div>
   <!-- Global Mailform Output-->
   <div class="snackbars" id="form-output-global"></div>
   <!-- Javascript-->
   <script src="js/core.min.js"></script>
   <script src="js/script.js"></script>
+  <div th:insert="fragments/footer :: footer"></div>
 </body>
 
 </html>

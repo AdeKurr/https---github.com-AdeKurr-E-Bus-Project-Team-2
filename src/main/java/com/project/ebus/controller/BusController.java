@@ -20,7 +20,7 @@ public class BusController {
     @Autowired
     perusahaanRepository perusahaanRepo;
 
-    @GetMapping("/index")
+    @GetMapping("/index") // ade
     public String getPageIndex(Model model) {
         List<Developers> dev = devRepo.findAll();
         model.addAttribute("dataDev", dev);
