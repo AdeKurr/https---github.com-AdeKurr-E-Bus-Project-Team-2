@@ -1,16 +1,20 @@
 package com.project.ebus.controller;
 
 import java.util.List;
-import java.util.Objects;
 
+import com.project.ebus.model.Booking;
 import com.project.ebus.model.Developers;
 import com.project.ebus.model.Jurusan;
+import com.project.ebus.model.Keberangkatan;
 import com.project.ebus.model.Perusahaan;
 import com.project.ebus.model.user;
+import com.project.ebus.repository.bookingRepository;
 import com.project.ebus.repository.developerRepository;
 import com.project.ebus.repository.jurusanRepository;
+import com.project.ebus.repository.keberangkatanRepository;
 import com.project.ebus.repository.perusahaanRepository;
-import com.project.ebus.service.UserService;
+import com.project.ebus.repository.userRepository;
+// import com.project.ebus.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,8 +22,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class BusController {
@@ -30,41 +32,76 @@ public class BusController {
     @Autowired
     perusahaanRepository perusahaanRepo;
 
-    @Autowired
-    UserService userService;
+    // @Autowired
+    // UserService userService;
 
     @Autowired
     jurusanRepository jurusanRepo;
 
+    @Autowired
+    userRepository userRepo;
+
+    @Autowired
+    bookingRepository bookingRepo;
+
+    @Autowired
+    keberangkatanRepository keberangkatanRepo;
+
+    // @GetMapping("/")
+    // public ModelAndView login() {
+    // ModelAndView nav = new ModelAndView("login");
+    // nav.addObject("user", new user());
+    // return nav;
+    // }
+
     @GetMapping("/")
-    public ModelAndView login() {
-        ModelAndView nav = new ModelAndView("login");
-        nav.addObject("user", new user());
-        return nav;
+    public String getFormPenumpang(Model model) {
+        model.addAttribute("data", new user());
+        return "login";
     }
 
-    @PostMapping("/login")
-    public String login(@ModelAttribute("user") user user) {
-        user oauthuser = userService.login(user.getEmail(), user.getPassword());
-        System.out.print(oauthuser);
-        if (Objects.nonNull(oauthuser)) {
-            return "redirect:/index";
+    @PostMapping("/loginresult")
+    public String getLoginInfo(@ModelAttribute("data") user user, Model model) {
+        String emailBeneran = user.getEmail();
+        String pwBeneran = user.getPassword();
+        List<user> dataLogin = userRepo.findByEmailAndPassword(emailBeneran, pwBeneran);
+        if (dataLogin.size() == 0) {
+            return "errorlogin";
         } else {
-            return "redirect:/login";
+            return "redirect:/index";
         }
     }
 
+    // @PostMapping("/login")
+    // public String login(@ModelAttribute("user") user user) {
+    // user oauthuser = userService.login(user.getEmail(), user.getPassword());
+    // System.out.print(oauthuser);
+    // if (Objects.nonNull(oauthuser)) {
+    // return "redirect:/index";
+    // } else {
+    // return "errorlogin";
+    // }
+    // }
+
     @GetMapping("/signup")
-    public String signup() {
+    public String signup(Model model) {
+        model.addAttribute("formData", new user());
         return "signup";
     }
 
-    @PostMapping("/saveuser")
-    @ResponseBody
-    public String saveUser(@ModelAttribute("data") user saveDataUser) {
-        userService.save(saveDataUser);
-        return "redirect:/login";
+    @PostMapping("/registrasi")
+    public String registrasi(@ModelAttribute("formData") user formData, Model model) {
+        userRepo.save(formData);
+        model.addAttribute("formData", formData);
+        return "redirect:/";
     }
+
+    // @PostMapping("/saveuser")
+    // @ResponseBody
+    // public String saveUser(@ModelAttribute("data") user saveDataUser) {
+    // userService.save(saveDataUser);
+    // return "redirect:/login";
+    // }
 
     @GetMapping("/index") // ade
     public String getPageIndex(Model model) {
@@ -92,18 +129,77 @@ public class BusController {
         return "perusahaan";
     }
 
-    @GetMapping("/contact")
-    public String cobaGetPagenya4() {
-        return "contact";
-    }
-
     @GetMapping("/booking")
-    public String cobaGetPagenya5() {
+    public String getBooking(Model model) {
+        model.addAttribute("formData", new Booking());
         return "booking";
     }
 
+    @PostMapping("/createbooking")
+	public String bookingResult(@ModelAttribute("formData") Booking formData, Model model) {
+		String nik = formData.getNik().getNik();
+		long idKeberangkatan = formData.getIdKeberangkatan().getId();
+		List<user> penumpangSementara = userRepo.findByNik(nik);
+		formData.setNik(penumpangSementara.get(0));
+		Keberangkatan keberangkatanSementara = keberangkatanRepo.getById(idKeberangkatan);
+		formData.setIdKeberangkatan(keberangkatanSementara);
+		bookingRepo.save(formData);
+		return "redirect:/account";
+	}
+
+    // @PostMapping("/bookingresult")
+    // public String resultnya(@ModelAttribute ("data") Booking formData , Model model){
+    //     String tanggalanu = formData.getIdKeberangkatan().getTanggal();
+    //     String deskripsianu = formData.getIdKeberangkatan().getIdJurusan().getDeskripsi();
+    //     List<Booking> anu = bookingRepo.getBookingByTanggalAndDeskripsi(tanggalanu, deskripsianu);
+    //     if(anu.size() == 0){
+    //         return "errorBooking";
+    //     } else{
+    //         model.addAttribute("data", anu);
+    //         bookingRepo.save(formData);
+    //         return "profil";
+    //     }
+
+    // }
+
+
+
+
+    // @PostMapping("/bookingresult")
+    // public String bookingResult(@ModelAttribute("dataBooking") Booking formData, Model model2){
+
+    //     bookingRepo.save();
+
+
+
+
+    //     String nik = formData.getNik().getNik();
+	// 	long idKeberangkatan = formData.getIdKeberangkatan().getId();
+	// 	List<user> penumpangSementara = userRepo.findByNik(nik);
+	// 	formData.setNik(penumpangSementara.get(0));
+	// 	Keberangkatan keberangkatanSementara = keberangkatanRepo.getById(idKeberangkatan);
+	// 	formData.setIdKeberangkatan(keberangkatanSementara);
+	// 	bookingRepo.save(formData);
+	// 	List<Booking> hasilSimpan = bookingRepo.findByNik(formData.getNik());
+	// 	model2.addAttribute("data", hasilSimpan.get(hasilSimpan.size() - 1));
+	// 	return "bookingdetail";
+    // }
+
+
+        // String tanggal = dataBooking.getIdKeberangkatan().getTanggal();
+        // String deskripsi = dataBooking.getIdKeberangkatan().getIdJurusan().getDeskripsi();
+        // List<KeberangkatanDetail> bookingBeneran = bookingRepo.findBookingByTanggalAndKeberangkatan(deskripsi, tanggal);
+        // dataBooking.setIdKeberangkatan(idKeberangkatan);
+        // if(bookingBeneran.size() == 0){
+        //     return "errorbooking";
+        // } else {
+        // bookingRepo.save(bookingBeneran);
+        // return null;
+        // }
+
     @GetMapping("/account")
-    public String cobaGetPagenya6() {
+    public String getAccount(@ModelAttribute("formData") Model model) {
+        
         return "akun";
     }
 

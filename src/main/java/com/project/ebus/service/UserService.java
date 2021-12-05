@@ -1,23 +1,26 @@
-package com.project.ebus.service;
+// package com.project.ebus.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.stereotype.Service;
 
-import com.project.ebus.repository.userRepository;
-import com.project.ebus.model.user;
+// import com.project.ebus.repository.userRepository;
 
-@Service
-public class UserService {
+// import java.util.List;
 
-    @Autowired
-    userRepository repo;
+// import com.project.ebus.model.user;
 
-    public user login(String email, String password) {
-        user user = repo.findByEmailAndPassword(email, password);
-        return user;
-    }
+// @Service
+// public class UserService {
 
-    public void save(user savedatauser) {
-        this.repo.save(savedatauser);
-    }
-}
+//     @Autowired
+//     userRepository repo;
+
+//     public user login(String email, String password) {
+//         List<user> user = repo.findByEmailAndPassword(email, password);
+//         return user;
+//     }
+
+//     public void save(user savedatauser) {
+//         this.repo.save(savedatauser);
+//     }
+// }

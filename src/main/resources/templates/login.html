@@ -23,7 +23,7 @@
           <div class="col-md-6 col-lg-4">
             <div class="login-wrap p-0">
               <h3 class="mb-4 text-center">Have an account?</h3>
-              <form action="#" class="signin-form" th:action="@{/login}" th:object="${user}" method="post">
+              <form action="#" class="signin-form" th:action="@{/loginresult}" th:object="${data}" method="post">
                 <div class="form-group">
                   <input type="text" th:field="*{email}" class="form-control" placeholder="Email" required />
                 </div>
@@ -56,6 +56,8 @@
         </div>
       </div>
     </section>
+    
+    
 
     <script src="js/jslogin/jquery.min.js"></script>
     <script src="js/jslogin/popper.js"></script>

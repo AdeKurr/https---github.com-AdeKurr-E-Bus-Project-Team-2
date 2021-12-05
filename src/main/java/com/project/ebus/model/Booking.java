@@ -22,10 +22,10 @@ public class Booking {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private long id;
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idKeberangkatan", referencedColumnName = "id")
 	private Keberangkatan idKeberangkatan;
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "nik", referencedColumnName = "nik")
-	private Penumpang nik;
+	private user nik;
 }
