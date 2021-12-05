@@ -199,20 +199,20 @@
         <div class="row row-30 justify-content-center box-ordered">
           <table cellpadding="50">
             <tr>
-              <div th:each="dev : ${dataDev}">
+              <div th:each="developer : ${dataDev}">
                 <th class="column">
                   <div>
-                    <img th:src="'images/'+${dev.id}+'.jpg'" alt="Snow" style="width:250px">
+                    <img th:src="'images/'+${developer.id}+'.jpg'" alt="Snow" style="width:250px">
                   </div>
                   <br>
                   <div>
-                    <h6 th:text="*{dev.nama}"> </h6>
+                    <h6 th:text="*{developer.nama}"> </h6>
                   </div>
                   <br>
                   <div>
-                    <a th:href="'https://www.facebook.com/'+${dev.usernameFb}+'/'"><img src="images/fb.png"
+                    <a th:href="'https://www.facebook.com/'+${developer.usernameFb}+'/'"><img src="images/fb.png"
                         width="30px" /></a>
-                    <a th:href="'https://www.instagram.com/'+${dev.usernameIg}+'/'"><img src="images/ig.png"
+                    <a th:href="'https://www.instagram.com/'+${developer.usernameIg}+'/'"><img src="images/ig.png"
                         width="30px" /></a>
                   </div>
                 </th>

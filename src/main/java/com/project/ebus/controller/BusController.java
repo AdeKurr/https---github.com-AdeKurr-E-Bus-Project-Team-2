@@ -66,7 +66,7 @@ public class BusController {
         return "redirect:/login";
     }
 
-    @GetMapping("/index") // ade
+    @GetMapping("/") // ade
     public String getPageIndex(Model model) {
         List<Developers> dev = devRepo.findAll();
         model.addAttribute("dataDev", dev);
