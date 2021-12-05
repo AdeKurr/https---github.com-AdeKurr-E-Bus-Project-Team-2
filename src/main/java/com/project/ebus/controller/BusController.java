@@ -144,65 +144,33 @@ public class BusController {
 		Keberangkatan keberangkatanSementara = keberangkatanRepo.getById(idKeberangkatan);
 		formData.setIdKeberangkatan(keberangkatanSementara);
 		bookingRepo.save(formData);
+        List<Booking> hasilSimpan = bookingRepo.findByNik(formData.getNik());
+		model.addAttribute("data", hasilSimpan.get(hasilSimpan.size() - 1));
 		return "redirect:/account";
 	}
 
-    // @PostMapping("/bookingresult")
-    // public String resultnya(@ModelAttribute ("data") Booking formData , Model model){
-    //     String tanggalanu = formData.getIdKeberangkatan().getTanggal();
-    //     String deskripsianu = formData.getIdKeberangkatan().getIdJurusan().getDeskripsi();
-    //     List<Booking> anu = bookingRepo.getBookingByTanggalAndDeskripsi(tanggalanu, deskripsianu);
-    //     if(anu.size() == 0){
-    //         return "errorBooking";
-    //     } else{
-    //         model.addAttribute("data", anu);
-    //         bookingRepo.save(formData);
-    //         return "profil";
-    //     }
-
-    // }
-
-
-
-
-    // @PostMapping("/bookingresult")
-    // public String bookingResult(@ModelAttribute("dataBooking") Booking formData, Model model2){
-
-    //     bookingRepo.save();
-
-
-
-
-    //     String nik = formData.getNik().getNik();
-	// 	long idKeberangkatan = formData.getIdKeberangkatan().getId();
-	// 	List<user> penumpangSementara = userRepo.findByNik(nik);
-	// 	formData.setNik(penumpangSementara.get(0));
-	// 	Keberangkatan keberangkatanSementara = keberangkatanRepo.getById(idKeberangkatan);
-	// 	formData.setIdKeberangkatan(keberangkatanSementara);
-	// 	bookingRepo.save(formData);
-	// 	List<Booking> hasilSimpan = bookingRepo.findByNik(formData.getNik());
-	// 	model2.addAttribute("data", hasilSimpan.get(hasilSimpan.size() - 1));
-	// 	return "bookingdetail";
-    // }
-
-
-        // String tanggal = dataBooking.getIdKeberangkatan().getTanggal();
-        // String deskripsi = dataBooking.getIdKeberangkatan().getIdJurusan().getDeskripsi();
-        // List<KeberangkatanDetail> bookingBeneran = bookingRepo.findBookingByTanggalAndKeberangkatan(deskripsi, tanggal);
-        // dataBooking.setIdKeberangkatan(idKeberangkatan);
-        // if(bookingBeneran.size() == 0){
-        //     return "errorbooking";
-        // } else {
-        // bookingRepo.save(bookingBeneran);
-        // return null;
-        // }
-
     @GetMapping("/account")
-    public String getAccount(@ModelAttribute("formData") Model model) {
-        
+    public String getAccount() {
         return "akun";
     }
 
+    @GetMapping("/detailbooking")
+    public String detailBooking(@ModelAttribute("data") Model model) {
+        
+        return "detailbooking";
+    }
+
+    @GetMapping("/cancel")
+	public String cancelBooking(Model model) {
+		model.addAttribute("formData", new Booking());
+		return "formcancel";
+	}
+
+	@PostMapping("/cancelbooking")
+	public String cancelBooking(@ModelAttribute("formData") Booking dataBooking) {
+		bookingRepo.deleteById(dataBooking.getId());
+		return "cancelmessage";
+	}
     // nanti yg ngerjain controller, kalo ada bentrok diatas replace aja. jangan
     // lupa commit message
 }
