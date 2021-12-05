@@ -36,7 +36,7 @@ public class BusController {
     @Autowired
     jurusanRepository jurusanRepo;
 
-    @GetMapping("/login")
+    @GetMapping("/")
     public ModelAndView login() {
         ModelAndView nav = new ModelAndView("login");
         nav.addObject("user", new user());
@@ -66,7 +66,7 @@ public class BusController {
         return "redirect:/login";
     }
 
-    @GetMapping("/") // ade
+    @GetMapping("/index") // ade
     public String getPageIndex(Model model) {
         List<Developers> dev = devRepo.findAll();
         model.addAttribute("dataDev", dev);
