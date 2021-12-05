@@ -5,14 +5,16 @@
   <title>Home</title>
   <div th:insert="fragments/linkcssfragment :: linkcss"></div>
   <style>
-    table, th, td {
+    table,
+    th,
+    td {
       margin: auto;
       border: 1px solid grey;
-      padding-left:10px;
-      padding-right:10px;
+      padding-left: 10px;
+      padding-right: 10px;
       font-size: 25px;
     }
-    </style>
+  </style>
 </head>
 
 <body>
@@ -41,38 +43,69 @@
             <div class="row justify-content-center">
               <div class="col-md-4 wow fadeInDown col-9" data-wow-delay=".2s">
                 <ul class="list-marked-2 box-categories-list">
-                  <li><a href="#akun"><img src="images/akun/akun.png" alt="" width="368" height="420" /></a>
+                  <li><a href="#akun"><img src="images/akun/akun.png" alt="" /></a>
                     <h5 class="box-categories-title">Akun Saya</h5>
                   </li>
                 </ul>
               </div>
               <div class="col-md-4 wow fadeInDown col-9" data-wow-delay=".2s">
                 <ul class="list-marked-2 box-categories-list">
-                  <li><a href=""><img src="images/akun/booking.png" alt="" width="368" height="420" /></a>
+                  <li><a href="#mybooking"><img src="images/akun/booking.png" alt="" width="368" height="420" /></a>
                     <h5 class="box-categories-title">Booking Saya</h5>
                   </li>
                 </ul>
               </div>
+              <br><br><br>
               <div id="akun">
-              <h3>Anda telah terdaftar dengan data berikut:</h3>
-              <br>
-              <table">
-                <th scope="row">nik</td>
-                <td>756544951843399</td>
-                </tr>
-                <th scope="row">nama</td>
-                <td>Jonathan Joestar</td>
-                </tr>
-                <th scope="row">telepon</td>
-                <td>021789654</td>
-                </tr>
-              </table>
+                <br><br><br>
+                <h3>Anda telah terdaftar dengan data berikut:</h3>
+                <br>
+                <table>
+                  <th scope="row">nik</td>
+                  <td>756544951843399</td>
+                  </tr>
+                  <th scope="row">nama</td>
+                  <td>Jonathan Joestar</td>
+                  </tr>
+                  <th scope="row">telepon</td>
+                  <td>021789654</td>
+                  </tr>
+                </table>
+              </div>
+              <div id="mybooking">
+                <br><br><br>
+                <h3 style="text-align: center;">Booking yang telah anda buat:</h3>
+                <br>
+                <table>
+                  <tr>
+                    <th>ID Booking</th>
+                    <th>NIK</th>
+                    <th>Nama</th>
+                    <th>ID Keberangkatan</th>
+                    <th>Waktu</th>
+                    <th>Perusahaan</th>
+                    <th>Kelas</th>
+                    <th>Harga</th>
+                    <th></th>
+                  </tr>
+                  <tr>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
+                    <td><a href="#">Hapus</a></td>
+                  </tr>
+                </table>
+              </div>
             </div>
           </div>
+          <!-- Owl Carousel-->
         </div>
-      <!-- Owl Carousel-->
-  </div>
-  </section>
+    </section>
 
 
   </div>

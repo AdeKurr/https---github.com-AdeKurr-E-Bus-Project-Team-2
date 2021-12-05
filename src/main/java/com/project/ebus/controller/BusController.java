@@ -102,9 +102,9 @@ public class BusController {
         return "booking";
     }
 
-    @GetMapping("/gallery")
+    @GetMapping("/account")
     public String cobaGetPagenya6() {
-        return "gallery";
+        return "akun";
     }
 
     // nanti yg ngerjain controller, kalo ada bentrok diatas replace aja. jangan
