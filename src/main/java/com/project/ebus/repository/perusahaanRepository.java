@@ -4,6 +4,6 @@ import com.project.ebus.model.Perusahaan;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface perusahaanRepository extends JpaRepository <Perusahaan, Long>{
-    
+public interface perusahaanRepository extends JpaRepository<Perusahaan, Long> {
+
 }

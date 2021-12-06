@@ -22,5 +22,6 @@ public class Perusahaan {
 	long id;
 	String nama;
 	String alamat;
+	String deskripsi;
 
 }
