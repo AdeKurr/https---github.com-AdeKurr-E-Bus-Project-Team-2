@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="en">
+
+<head>
+  <title>Rekan Bisnis</title>
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport"
+    content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <!-- Stylesheets-->
+  <link rel="stylesheet" type="text/css"
+    href="//fonts.googleapis.com/css?family=Montserrat:400,500,600,700%7CPoppins:400%7CTeko:300,400">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .ie-panel {
+      display: none;
+      background: #212121;
+      padding: 10px 0;
+      box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, .3);
+      clear: both;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    html.ie-10 .ie-panel,
+    html.lt-ie-10 .ie-panel {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img
+        src="images/ie8-panel/warning_bar_0000_us.jpg" height="42" width="820"
+        alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a>
+  </div>
+  <div class="preloader">
+    <div class="preloader-body">
+      <div class="cssload-container">
+        <div class="cssload-speeding-wheel"></div>
+      </div>
+      <p>Loading...</p>
+    </div>
+  </div>
+  <div class="page">
+    <div th:insert="fragments/header :: header"></div>
+    <!-- Breadcrumbs -->
+    <section class="breadcrumbs-custom-inset">
+      <div class="breadcrumbs-custom context-dark bg-overlay-60">
+        <div class="container">
+          <h2 class="breadcrumbs-custom-title">Rekan Bisnis</h2>
+          <ul class="breadcrumbs-custom-path">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">Rekan Kerja</li>
+          </ul>
+        </div>
+        <div class="box-position" style="background-image: url(images/handshake.jpg);"></div>
+      </div>
+    </section>
+    <!-- Base typography-->
+    <section class="section section-sm section-first bg-default text-left">
+      <div class="container">
+        <div class="row row-40 flex-lg-row-reverse justify-content-xl-between">
+          <div class="col-xl-5 d-none d-xl-block">
+            <div class="offset-left-xl-45">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <style>
+      .kolom {
+        float: left;
+        width: 50%;
+      }
+
+      /* Clear floats after the columns */
+      .baris:after {
+        padding: 15 px;
+        content: "";
+        display: table;
+        clear: both;
+      }
+    </style>
+
+    <!-- What people Say-->
+    <section class="section section-sm section-last bg-default">
+      <div class="container">
+        <h3>Why We Need to Work together</h3>
+        <!-- Owl Carousel-->
+        <div class="owl-carousel owl-modern" data-items="1" data-stage-padding="15" data-margin="30" data-dots="true"
+          data-animation-in="fadeIn" data-animation-out="fadeOut" data-autoplay="true">
+          <!-- Quote Lisa-->
+          <article class="quote-lisa">
+            <div class="quote-lisa-body"><a class="quote-lisa-figure" href="#"><img class="img-circles"
+                  src="images/perusahaan/henryford.jpg" alt="" width="150" height="150" /></a>
+              <div class="quote-lisa-text">
+                <p class="q" style="font-size: 20px;"><br>Coming together is a <b>beginning</b>, staying together is <b>progress</b>, and working together is <b>success</b>.</p>
+              </div>
+              <h5 class="quote-lisa-cite"><a href="#">Henry Ford</a></h5>
+              <p class="quote-lisa-status"> founder of the Ford Motor Company</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <br><br><br><br><br>
+
+<div style="margin-left: 250px; margin-right: 250px;">
+  <h3>Perusahaan yang telah Bekerja Sama dengan Kami:</h3>
+  <br><br>
+  <div th:each="perusahaan: ${dataperusahaan}">
+    <div class="kolom">
+      <img th:src="'images/perusahaan/'+${perusahaan.id}+'.jpg'" alt="" width="750px" /></a>
+    </div>
+    <div class="kolom">
+      <p style="font-size: 40px; margin-left: 50px; margin-right: 50px;" th:text="${perusahaan.nama}" />
+      <p style="font-size: 30px; margin-left: 50px; margin-right: 50px;" th:text="${perusahaan.alamat}" />
+      <p style="font-size: 20px; margin-left: 50px; margin-right: 50px;" th:text="${perusahaan.deskripsi}" />
+      <br><br><br><br><br>
+    </div>
+    <br><br><br>
+  </div>
+</div>
+    
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+  </section>
+
+  <div th:insert="fragments/footer :: footer"></div>
+  </div>
+  <!-- Global Mailform Output-->
+  <div class="snackbars" id="form-output-global"></div>
+  <!-- Javascript-->
+  <script src="js/core.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+
+</html>
